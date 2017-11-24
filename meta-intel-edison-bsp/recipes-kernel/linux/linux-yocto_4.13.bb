@@ -14,6 +14,7 @@ SRC_URI = "git://github.com/htot/linux.git;protocol=https;branch=eds-4.13 \
         file://i2c_chardev.cfg \
         file://usb_phy.cfg \
         file://usb_dwc3.cfg \
+        file://g_multi.cfg \
         "
 
 SRCREV = "54f9552249b720ef9d33a7eb9e0d1f8f53ce1025"
