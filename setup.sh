@@ -25,8 +25,8 @@
 set -e
 
 # Branch and Tag to fetch from the yoctoproject.org upstream repository.
-yocto_branch="pyro"
-yocto_tag="pyro"
+yocto_branch="rocko"
+yocto_tag="rocko"
 
 do_local_conf () {
   cat > $yocto_conf_dir/local.conf <<EOF
@@ -56,7 +56,7 @@ do_initramfs_conf () {
 INITRAMFS_IMAGE = "core-image-minimal-initramfs"
 INITRAMFS_IMAGE_BUNDLE = "1"
 INITRAMFS_MAXSIZE ="15728640"
- 
+
 IMAGE_FSTYPES = "cpio.gz"
 IMAGE_INSTALL+="kernel-modules"
 EOF
@@ -327,8 +327,8 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   echo "Cloning Openembedded layer to ${oe_dir} directory from local cache"
   git clone ${my_dl_dir}/meta-openembedded-mirror.git meta-openembedded
   cd ${oe_dir}
-  git checkout pyro
-  
+  git checkout ${yocto_branch}
+
   cd $poky_dir
   oe_dir=$poky_dir/meta-nodejs
   echo "Cloning Nodejs layer to ${oe_dir} directory from local cache"
@@ -336,7 +336,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   cd ${oe_dir}
   git checkout master
 
-  
+
   cd ${top_repo_dir}
   middleware_dir=${top_repo_dir}/meta-intel-iot-middleware
   if [ ! -d "${middleware_dir}" ]; then
@@ -344,11 +344,11 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
     echo "Cloning meta-intel-iot-middleware layer to ${middleware_dir} directory from local cache"
     git clone ${my_dl_dir}/meta-intel-iot-middleware-mirror.git meta-intel-iot-middleware
     cd ${middleware_dir}
-    git checkout pyro
+    git checkout ${yocto_branch}
   else
     echo "meta-intel-iot-middleware already exists, rebasing from local cache"
     cd ${middleware_dir}
-    git pull --rebase origin pyro
+    git pull --rebase origin ${yocto_branch}
   fi
 
 
