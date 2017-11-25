@@ -7,7 +7,7 @@ require recipes-kernel/linux/linux-yocto.inc
 
 PV = "4.14.0"
 
-SRC_URI = "git://github.com/htot/linux.git;protocol=https;branch=eds-4.14-acpi \
+SRC_URI = "git://github.com/thecubic/linux.git;protocol=https;branch=eds-4.14-acpi \
         file://ftdi_sio.cfg \
         file://smsc95xx.cfg \
         file://bt_more.cfg \
@@ -17,7 +17,7 @@ SRC_URI = "git://github.com/htot/linux.git;protocol=https;branch=eds-4.14-acpi \
         file://g_multi.cfg \
         "
 
-SRCREV = "54f9552249b720ef9d33a7eb9e0d1f8f53ce1025"
+SRCREV = "0a5698e8c1bd960268cbd610288dacca2d220790"
 
 LINUX_VERSION ?= "4.14"
 LINUX_VERSION_EXTENSION = "-edison-acpi-${LINUX_KERNEL_TYPE}"

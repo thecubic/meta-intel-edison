@@ -300,7 +300,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   do_update_cache "meta-nodejs" "https://github.com/imyller"
   do_update_cache "meta-mingw" "git://git.yoctoproject.org"
   do_update_cache "meta-darwin" "git://git.yoctoproject.org"
-  do_update_cache "meta-intel-iot-middleware" "https://github.com/htot"
+  do_update_cache "meta-intel-iot-middleware" "https://github.com/thecubic"
 
   cd $my_build_dir
   poky_dir=$my_build_dir/poky
