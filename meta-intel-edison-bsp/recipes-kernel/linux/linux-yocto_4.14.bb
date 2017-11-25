@@ -21,6 +21,6 @@ SRC_URI = "git://github.com/thecubic/linux.git;protocol=https;branch=eds-4.14 \
 SRCREV = "417835b0c7d072649b2de13ba9dfe6eb5f3b8775"
 
 LINUX_VERSION ?= "4.14"
-LINUX_VERSION_EXTENSION = "-edison-acpi-${LINUX_KERNEL_TYPE}"
+LINUX_VERSION_EXTENSION = "-edison-${LINUX_KERNEL_TYPE}"
 
 COMPATIBLE_MACHINE = "edison"
