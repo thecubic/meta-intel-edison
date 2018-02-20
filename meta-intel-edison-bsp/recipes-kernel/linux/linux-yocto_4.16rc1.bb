@@ -5,7 +5,7 @@ KBRANCH ?= "standard/base"
 
 require recipes-kernel/linux/linux-yocto.inc
 
-PV = "4.15-rc6"
+PV = "4.16-rc1"
 
 SRC_URI = "git://github.com/andy-shev/linux.git;protocol=https;branch=eds \
         file://ftdi_sio.cfg \
@@ -25,7 +25,7 @@ SRCREV = "0a5698e8c1bd960268cbd610288dacca2d220790"
 SRCREV = "a7d31bb421d46ee1b7f43b113dd1f51e91ccb189"
 SRCREV = "479efb3c34fab68472e52c57d06cef69f5c87ec1"
 
-LINUX_VERSION ?= "4.14"
+LINUX_VERSION ?= "4.16rc1"
 LINUX_VERSION_EXTENSION = "-github-andy-shev-${LINUX_KERNEL_TYPE}"
 
 COMPATIBLE_MACHINE = "edison"
