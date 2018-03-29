@@ -16,18 +16,8 @@ PCBIOS = "0"
 NOISO = "1"
 ROOTFS = ""
 
-# This is useless stuff, but necessary for building because
-# inheriting bootimg also brings syslinux in..
-#AUTO_SYSLINUXCFG = "1"
-#SYSLINUX_ROOT = ""
-#SYSLINUX_TIMEOUT ?= "10"
-#SYSLINUX_LABELS ?= "boot install"
-#LABELS_append = " ${SYSLINUX_LABELS} "
-
-
 # Specify rootfs image type
-IMAGE_FSTYPES = " ext4"
-#IMAGE_FSTYPES = "ext4 live"
+IMAGE_FSTYPES = "btrfs"
 
 #inherit core-image
 

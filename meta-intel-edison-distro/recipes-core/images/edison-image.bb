@@ -26,7 +26,7 @@ LABELS_append = " ${SYSLINUX_LABELS} "
 
 
 # Specify rootfs image type
-IMAGE_FSTYPES = "ext4"
+IMAGE_FSTYPES = "btrfs"
 
 inherit core-image
 
@@ -88,7 +88,7 @@ IMAGE_INSTALL += "sst-fw-bin"
 IMAGE_INSTALL += "alsa-utils-alsamixer alsa-utils-alsactl alsa-utils-aplay alsa-utils-amixer"
 
 # Python and some basic modules
-# removed python-imaging python-pygobject python-dbus 
+# removed python-imaging python-pygobject python-dbus
 IMAGE_INSTALL += "python"
 IMAGE_INSTALL += "python-argparse"
 IMAGE_INSTALL += "python-distutils python-pkgutil python-audio python-image python-email python-netserver python-xmlrpc python-ctypes python-html python-json python-compile python-misc python-numbers python-unittest python-pydoc python-importlib"
