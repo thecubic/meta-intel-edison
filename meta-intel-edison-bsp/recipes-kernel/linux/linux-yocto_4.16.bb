@@ -1,9 +1,10 @@
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-KBRANCH ?= "standard/base"
+KBRANCH ?= "master"
 
 require recipes-kernel/linux/linux-yocto.inc
+
+LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
 PV = "4.16"
 
@@ -23,6 +24,6 @@ SRC_URI = "git://github.com/thecubic/linux.git;protocol=https \
 SRCREV = "afef7d731842caadf269e07e6d104ac7d66fc459"
 
 LINUX_VERSION ?= "4.16"
-LINUX_VERSION_EXTENSION = "-edison-${LINUX_KERNEL_TYPE}"
+LINUX_VERSION_EXTENSION = "-${LINUX_KERNEL_TYPE}"
 
 COMPATIBLE_MACHINE = "edison"
