@@ -193,9 +193,9 @@ main() {
   my_sstate_dir="$top_repo_dir/bbcache/sstate-cache"
   my_bb_number_thread=4
   my_parallel_make=8
-  my_build_name="Custom Edison build by $USER@$HOSTNAME "$(date +"%F %H:%M:%S %Z")
-  all_sdk_hosts="linux32 linux64 win32 win64 macosx"
-  extra_package_type="package_deb"
+  my_build_name="pancreato-edison"
+  all_sdk_hosts="linux64"
+  extra_package_type="package_rpm"
 
   #probe my_sdk_host from uname
   plat=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -294,16 +294,14 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
       ;;
   esac
 
-  # Updating local git cache
+  echo "# updating local git cache"
   do_update_cache "poky" "git://git.yoctoproject.org"
   do_update_cache "meta-openembedded" "https://github.com/openembedded"
   do_update_cache "meta-nodejs" "https://github.com/imyller"
-  # do_update_cache "meta-mingw" "git://git.yoctoproject.org"
-  # do_update_cache "meta-darwin" "git://git.yoctoproject.org"
   do_update_cache "meta-intel-iot-middleware" "https://github.com/thecubic"
   do_update_cache "oe-meta-go" "https://github.com/mem/oe-meta-go"
   do_update_cache "meta-influx" "https://github.com/C-X1/meta-influx"
-  
+
   cd $my_build_dir
   poky_dir=$my_build_dir/poky
   echo "Cloning Poky in the $poky_dir directory"
@@ -312,17 +310,6 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   git clone -b ${yocto_branch} ${my_dl_dir}/poky-mirror.git poky
   cd $poky_dir
   git checkout ${yocto_tag}
-
-  # mingw_dir=$poky_dir/meta-mingw
-  # echo "Cloning Mingw layer to ${mingw_dir} directory from local cache"
-  # git clone -b ${yocto_branch} ${my_dl_dir}/meta-mingw-mirror.git meta-mingw
-
-  # darwin_dir=$poky_dir/meta-darwin
-  # echo "Cloning Darwin layer to ${darwin_dir} directory from local cache"
-  # git clone ${my_dl_dir}/meta-darwin-mirror.git meta-darwin
-  # cd ${darwin_dir}
-  # git checkout 29b5ff31cee24e796f2eb2d2fd1269e3e92c831c
-  # git apply $top_repo_dir/meta-intel-edison/utils/0001-Update-gcc-patch.patch
 
   cd $poky_dir
   oe_dir=$poky_dir/meta-openembedded
@@ -338,7 +325,6 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   cd ${oe_dir}
   git checkout master
 
-
   cd ${top_repo_dir}
   middleware_dir=${top_repo_dir}/meta-intel-iot-middleware
   if [ ! -d "${middleware_dir}" ]; then
@@ -352,30 +338,6 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
     cd ${middleware_dir}
     git pull --rebase origin ${yocto_branch}
   fi
-
-
-  # cd ${top_repo_dir}
-  # echo "Cloning meta-arduino layer to ${top_repo_dir} directory from GitHub.com/01org/meta-arduino"
-  # rm -rf meta-arduino || true
-  # git clone -b 1.6.x https://github.com/01org/meta-arduino.git
-  # cd meta-arduino
-  # git checkout 1.6.x
-
-  # Apply patch on top of it allowing to perform build in external source directory
-  # echo "Applying patch on poky"
-  # cd $mingw_dir
-  # git apply $top_repo_dir/meta-intel-edison/utils/0001-Revert-machine-sdk-mingw32.conf-Disable-SDKTAROPTS.patch
-  # cd $poky_dir
-
-  # if [[ $my_sdk_host == win* ]]
-  # then
-    # do_append_layer $mingw_dir
-  # fi
-
-  # if [[ $my_sdk_host == macosx ]]
-  # then
-    # do_append_layer $darwin_dir
-  # fi
 
   echo "Initializing yocto build environment"
   source $my_build_dir/poky/oe-init-build-env $my_build_dir/build > /dev/null
